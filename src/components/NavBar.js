@@ -12,7 +12,7 @@ export default function NavBar() {
         About
       </NavLink>
       {" - "}
-      <NavLink activeStyle={{ fontWeight: "bold" }} to="/discover">
+      <NavLink activeStyle={{ fontWeight: "bold" }} to="/discover" exact>
         Discover
       </NavLink>
     </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function MovieItem({ movie }) {
   return (
     <div
@@ -7,7 +9,10 @@ export default function MovieItem({ movie }) {
         boxSizing: "border-box",
       }}
     >
-      <strong>{movie.Title}</strong> ({movie.imdbID})
+      <Link to={`/discover/${movie.imdbID}`}>
+        <strong>{movie.Title}</strong>
+      </Link>
+      ({movie.imdbID})
       <img
         src={movie.Poster}
         alt={movie.Title}
