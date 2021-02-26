@@ -5,7 +5,9 @@ export default function DiscoverMoviesPage() {
   const [searchText, set_searchText] = useState("");
   const [state, setState] = useState({ status: "idle" });
 
-  const search = async () => {
+  const search = async e => {
+    e.preventDefault();
+
     if (searchText === "") {
       setState({ status: "idle" });
       return;
@@ -28,11 +30,13 @@ export default function DiscoverMoviesPage() {
     <div>
       <h1>Discover some movies!</h1>
       <p>
-        <input
-          value={searchText}
-          onChange={e => set_searchText(e.target.value)}
-        />
-        <button onClick={search}>Search</button>
+        <form onSubmit={search}>
+          <input
+            value={searchText}
+            onChange={e => set_searchText(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
       </p>
       {state.status === "idle" && (
         <p>Type in a search term and click "Search" to start...</p>
