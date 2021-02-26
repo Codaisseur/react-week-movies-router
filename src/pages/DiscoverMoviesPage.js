@@ -29,15 +29,13 @@ export default function DiscoverMoviesPage() {
   return (
     <div>
       <h1>Discover some movies!</h1>
-      <p>
-        <form onSubmit={search}>
-          <input
-            value={searchText}
-            onChange={e => set_searchText(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-      </p>
+      <form onSubmit={search}>
+        <input
+          value={searchText}
+          onChange={e => set_searchText(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
       {state.status === "idle" && (
         <p>Type in a search term and click "Search" to start...</p>
       )}
