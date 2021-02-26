@@ -9,7 +9,7 @@ export default function MovieItem({ movie }) {
         boxSizing: "border-box",
       }}
     >
-      <Link to={`/discover/${movie.imdbID}`}>
+      <Link to={`/movie/${movie.imdbID}`}>
         <strong>{movie.Title}</strong>
       </Link>
       ({movie.imdbID})
