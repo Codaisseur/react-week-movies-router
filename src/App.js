@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import AboutPage from "./pages/AboutPage";
@@ -8,14 +8,16 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <NavBar />
-      <Switch>
-        <Route path="/discover/:searchtext?" component={DiscoverMoviesPage} />
-        <Route path="/movie/:imdb_id" component={MoviePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/" component={HomePage} />
-      </Switch>
+      <Routes>
+        <Route path='/discover' element={<DiscoverMoviesPage />}>
+          <Route path=':searchtext' element={<DiscoverMoviesPage />} />
+        </Route>
+        <Route path='/movie/:imdb_id' element={<MoviePage />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/' element={<HomePage />} />
+      </Routes>
     </div>
   );
 }
