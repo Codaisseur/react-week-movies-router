@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MovieItem from "../components/MovieItem";
 
 export default function DiscoverMoviesPage() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { searchtext } = useParams();
 
   const [searchText, set_searchText] = useState(searchtext);
@@ -25,7 +25,7 @@ export default function DiscoverMoviesPage() {
       // Option A: use the browser-native fetch function
       const data = await fetch(
         `https://omdbapi.com/?apikey=6a06f383&s=${queryParam}`
-      ).then(r => r.json());
+      ).then((r) => r.json());
 
       setState({ status: "done", data: data.Search });
     }
@@ -33,10 +33,10 @@ export default function DiscoverMoviesPage() {
     fetchData();
   }, [searchtext]);
 
-  const navigateToSearch = e => {
+  const navigateToSearch = (e) => {
     e.preventDefault();
     const routeParam = encodeURIComponent(searchText);
-    history.push(`/discover/${routeParam}`);
+    navigate(`/discover/${routeParam}`);
   };
 
   return (
@@ -45,9 +45,9 @@ export default function DiscoverMoviesPage() {
       <form onSubmit={navigateToSearch}>
         <input
           value={searchText}
-          onChange={e => set_searchText(e.target.value)}
+          onChange={(e) => set_searchText(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <button type='submit'>Search</button>
       </form>
       {state.status === "idle" && (
         <p>Type in a search term and click "Search" to start...</p>
@@ -65,7 +65,7 @@ export default function DiscoverMoviesPage() {
                   margin: "0 -10px",
                 }}
               >
-                {state.data.map(movie => (
+                {state.data.map((movie) => (
                   <MovieItem key={movie.imdbID} movie={movie} />
                 ))}
               </div>
